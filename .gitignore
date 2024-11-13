@@ -1,0 +1,7 @@
+dist
+aux.py
+data
+versions_prompt
+temp
+venv
+__pycache__
