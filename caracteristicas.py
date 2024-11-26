@@ -7,8 +7,10 @@ contar_char_ngrams, lemma_length
 )
 
 # Leer el archivo Excel
-#file_path = 'D:/XYZ/Calculo_CaracteristicasL/Adminlex_single_train_si_normalizacion.xlsx'
-file_path = 'D:/XYZ/Calculo_CaracteristicasL/Adminlex_single_train_no_normalizacion.xlsx'
+file_path = 'D:/XYZ/PHYTON/Calculo_CaracteristicasL/Adminlex_single_train_normalizacion.xlsx' #archivo original
+#file_path = 'D:/XYZ/PHYTON/Calculo_CaracteristicasL/Adminlex_single_train_si_normalizacion.xlsx'
+#file_path = 'D:/XYZ/PHYTON/Calculo_CaracteristicasL/Adminlex_single_train_no_normalizacion.xlsx'
+sheet_name = 'Nivel de Complejidad'
 df = pd.read_excel(file_path)
 n = 3
 
@@ -42,23 +44,25 @@ df['normalized_total_char_ngrams'] = (df['total_char_ngrams'] - df['total_char_n
 # Imprimir un mensaje
 print("Se ha calculado la/s características.")
 
-
+# Mantener las columnas originales y agregar las nuevas en el archivo Excel
+with pd.ExcelWriter(file_path, engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer:
+    df.to_excel(writer, sheet_name=sheet_name, index=False)
 
 # Guardar el archivo Excel las columnas con resultados sin nomrlaizar
-df[['id', 'corpus', 'sentence', 'token', 'complexity', 
-    'morpheme_count',
-    'lemma_length',
-    'stopwords_count',
-    'word_senses',
-    'flesch_score',
-    'gunning_fog',
-    'smog_index',
-    'rix_score',
-    'total_char_ngrams',
-    ]].to_excel(file_path, index=False)
+# df[['id', 'corpus', 'sentence', 'token', 'complexity', 
+#     'morpheme_count',
+#     'lemma_length',
+#     'stopwords_count',
+#     'word_senses',
+#     'flesch_score',
+#     'gunning_fog',
+#     'smog_index',
+#     'rix_score',
+#     'total_char_ngrams',
+#     ]].to_excel(file_path, index=False)
 
 
-# Guardar el archivo Excel las columnas con resultados normalizados
+#Guardar el archivo Excel las columnas con resultados normalizados
 # df[['id', 'corpus', 'sentence', 'token', 'complexity', 
 #     'normalized_morpheme_count',
 #     'normalized_lemma_length',

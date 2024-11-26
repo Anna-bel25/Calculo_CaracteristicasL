@@ -16,7 +16,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 
 
 # Leer el archivo Excel
-morfemas_df = pd.read_excel('D:/XYZ/Calculo_CaracteristicasL/prefijos_sufijos.xlsx')
+morfemas_df = pd.read_excel('D:/XYZ/PHYTON/Calculo_CaracteristicasL/prefijos_sufijos.xlsx')
 
 # Extraer prefijos y sufijos en listas
 prefijos = morfemas_df['Prefijos'].dropna().tolist()
