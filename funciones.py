@@ -15,6 +15,13 @@ stop_words_nltk = set(stopwords.words('spanish'))
 from nltk.tokenize import sent_tokenize, word_tokenize
 
 
+# Normalización de las columnas
+def normalize_column(column):
+    """Normaliza una columna de pandas."""
+    return (column - column.min()) / (column.max() - column.min()) if (column.max() - column.min()) != 0 else 0
+
+
+
 # Leer el archivo Excel
 morfemas_df = pd.read_excel('D:/XYZ/PHYTON/Calculo_CaracteristicasL/prefijos_sufijos.xlsx')
 
